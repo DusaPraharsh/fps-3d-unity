@@ -56,5 +56,6 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "fps-3d-unity.sln"
+    "dotnet.defaultSolution": "fps-3d-unity.sln",
+    "editor.codeLens": false
 }
