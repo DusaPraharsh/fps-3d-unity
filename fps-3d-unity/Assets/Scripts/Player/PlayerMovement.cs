@@ -1,3 +1,4 @@
+using Unity.Mathematics;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
@@ -6,6 +7,7 @@ public class PlayerMovement : MonoBehaviour
 
     public float speed = 20f;
     public float gravity = -9.81f;
+    public float jumpPower = 3f;
 
     public Transform groundCheck;
     public float groundDistance = 0.4f;
@@ -31,8 +33,18 @@ public class PlayerMovement : MonoBehaviour
 
         controller.Move(move * speed * Time.deltaTime);
 
+        Jump();
+
         velocity.y += gravity * Time.deltaTime;
 
-        controller.Move(velocity);
+        controller.Move(velocity * Time.deltaTime);
+    }
+
+    private void Jump()
+    {
+        if (Input.GetButtonDown("Jump") && isGrounded)
+        {
+            velocity.y = Mathf.Sqrt(jumpPower * -2f * gravity);
+        }
     }
 }

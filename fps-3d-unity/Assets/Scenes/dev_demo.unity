@@ -155,7 +155,7 @@ CharacterController:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Height: 3.8
+  m_Height: 3.7
   m_Radius: 0.6
   m_SlopeLimit: 45
   m_StepOffset: 0.7
@@ -194,7 +194,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 95336004}
   speed: 20
-  gravity: -9.81
+  gravity: -35
+  jumpPower: 3
   groundCheck: {fileID: 360984559}
   groundDistance: 0.4
   groundLayer:
@@ -377,7 +378,7 @@ Transform:
   m_GameObject: {fileID: 360984558}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.789, z: 0}
+  m_LocalPosition: {x: 0, y: -1.823, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -516,7 +517,7 @@ GameObject:
   - component: {fileID: 526974890}
   - component: {fileID: 526974889}
   - component: {fileID: 526974888}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Stairs (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -624,7 +625,7 @@ GameObject:
   - component: {fileID: 589072796}
   - component: {fileID: 589072795}
   - component: {fileID: 589072794}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Stairs (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -890,7 +891,7 @@ GameObject:
   - component: {fileID: 1451173844}
   - component: {fileID: 1451173843}
   - component: {fileID: 1451173842}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Slope (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -980,8 +981,8 @@ Transform:
   m_GameObject: {fileID: 1451173841}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 0.23630947, w: 0.9716779}
-  m_LocalPosition: {x: -9.24, y: 0.73, z: 11.7}
-  m_LocalScale: {x: 5, y: 1, z: 5}
+  m_LocalPosition: {x: -7.42, y: 1.67, z: 11.7}
+  m_LocalScale: {x: 10, y: 1, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -1084,7 +1085,7 @@ GameObject:
   - component: {fileID: 1710748440}
   - component: {fileID: 1710748439}
   - component: {fileID: 1710748438}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Stairs (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1192,7 +1193,7 @@ GameObject:
   - component: {fileID: 1793473485}
   - component: {fileID: 1793473484}
   - component: {fileID: 1793473483}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Slope
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1300,7 +1301,7 @@ GameObject:
   - component: {fileID: 2030034526}
   - component: {fileID: 2030034525}
   - component: {fileID: 2030034524}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Stairs
   m_TagString: Untagged
   m_Icon: {fileID: 0}
