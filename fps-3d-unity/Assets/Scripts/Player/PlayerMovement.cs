@@ -5,21 +5,24 @@ public class PlayerMovement : MonoBehaviour
 {
     public CharacterController controller;
 
-    public float speed = 20f;
-    public float gravity = -9.81f;
-    public float jumpPower = 3f;
+    public float speed;
+    public float sprint;
+    public float gravity;
+    public float jumpPower;
 
     public Transform groundCheck;
     public float groundDistance = 0.4f;
     public LayerMask groundLayer;
 
     bool isGrounded;
+    bool isSprinting;
 
     Vector3 velocity;
 
     void Update()
     {
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundLayer);
+        isSprinting = Input.GetKey(KeyCode.LeftShift);
 
         if (isGrounded && velocity.y < 0)
         {
@@ -29,9 +32,11 @@ public class PlayerMovement : MonoBehaviour
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
 
+        float currentSpeed = isSprinting ? sprint : speed;
+
         Vector3 move = transform.right * x + transform.forward * z;
 
-        controller.Move(move * speed * Time.deltaTime);
+        controller.Move(move * currentSpeed * Time.deltaTime);
 
         Jump();
 
