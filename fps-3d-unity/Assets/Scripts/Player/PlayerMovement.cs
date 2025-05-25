@@ -9,6 +9,9 @@ public class PlayerMovement : MonoBehaviour
     public float sprint;
     public float gravity;
     public float jumpPower;
+    public float crouchSpeed;
+    public float crouchYScale;
+    private float startYScale;
 
     public Transform groundCheck;
     public float groundDistance = 0.4f;
@@ -16,6 +19,7 @@ public class PlayerMovement : MonoBehaviour
 
     bool isGrounded;
     bool isSprinting;
+    bool isCrouching;
 
     Vector3 velocity;
 
@@ -39,6 +43,7 @@ public class PlayerMovement : MonoBehaviour
         controller.Move(move * currentSpeed * Time.deltaTime);
 
         Jump();
+        Crouch();
 
         velocity.y += gravity * Time.deltaTime;
 
@@ -50,6 +55,21 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
             velocity.y = Mathf.Sqrt(jumpPower * -2f * gravity);
+        }
+    }
+
+    private void Crouch()
+    {
+        startYScale = transform.localScale.y;
+
+        if (Input.GetKeyDown(KeyCode.LeftControl))
+        {
+            transform.localScale = new Vector3(transform.localScale.x, crouchYScale, transform.localScale.z);
+        }
+
+        if (Input.GetKeyUp(KeyCode.LeftControl))
+        {
+            transform.localScale = new Vector3(transform.localScale.x, startYScale, transform.localScale.z);
         }
     }
 }
