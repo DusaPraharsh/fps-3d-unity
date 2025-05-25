@@ -19,11 +19,15 @@ public class PlayerMovement : MonoBehaviour
 
     bool isGrounded;
     bool isSprinting;
-    bool isCrouching;
 
     Vector3 velocity;
 
-    void Update()
+    private void Start()
+    {
+        startYScale = transform.localScale.y;
+    }
+    
+    private void Update()
     {
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundLayer);
         isSprinting = Input.GetKey(KeyCode.LeftShift);
@@ -60,8 +64,6 @@ public class PlayerMovement : MonoBehaviour
 
     private void Crouch()
     {
-        startYScale = transform.localScale.y;
-
         if (Input.GetKeyDown(KeyCode.LeftControl))
         {
             transform.localScale = new Vector3(transform.localScale.x, crouchYScale, transform.localScale.z);
