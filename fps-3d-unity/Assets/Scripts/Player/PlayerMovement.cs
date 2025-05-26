@@ -3,16 +3,21 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    [Header("Character Controller")]
     public CharacterController controller;
 
+    [Header("Movement")]
     public float speed;
     public float sprint;
     public float gravity;
     public float jumpPower;
+
+    [Header("Crouch")]
     public float crouchSpeed;
     public float crouchYScale;
     private float startYScale;
 
+    [Header("Ground Check")]
     public Transform groundCheck;
     public float groundDistance = 0.4f;
     public LayerMask groundLayer;
