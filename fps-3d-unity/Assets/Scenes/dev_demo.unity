@@ -172,6 +172,7 @@ MonoBehaviour:
   jumpForce: 12
   jumpCooldown: 0.25
   airMultiplier: 0.4
+  gravity: {x: 0, y: -20, z: 0}
   jumpKey: 32
   playerHeight: 2
   groundLayer:

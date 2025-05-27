@@ -13,6 +13,8 @@ public class PlayerMovement : MonoBehaviour
     public float airMultiplier;
     bool canJump;
 
+    public Vector3 gravity = new Vector3(0, -9.81f, 0);
+
     [Header("Keybinds")]
     public KeyCode jumpKey = KeyCode.Space;
 
@@ -34,11 +36,13 @@ public class PlayerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
+        rb.useGravity = false;
+        canJump = true;
     }
 
     private void Update()
     {
-        isGrounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, groundLayer);
+        isGrounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.3f, groundLayer);
 
         MyInput();
         SpeedControl();
@@ -55,6 +59,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
+        rb.AddForce(gravity, ForceMode.Acceleration);
         MovePlayer();
     }
 
@@ -81,7 +86,7 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
         }
-        else
+        else if (!isGrounded)
         {
             rb.AddForce(moveDirection.normalized * moveSpeed * 10f * airMultiplier, ForceMode.Force);
         }
