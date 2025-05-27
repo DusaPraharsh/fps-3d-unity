@@ -128,8 +128,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 95336005}
-  - component: {fileID: 95336007}
   - component: {fileID: 95336008}
+  - component: {fileID: 95336007}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -167,6 +167,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e721cc5571f3ea6409d3524ff90892d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moveSpeed: 10
+  groundDrag: 5
+  playerHeight: 2
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 256
+  orientation: {fileID: 1817559551}
 --- !u!54 &95336008
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1826,9 +1833,9 @@ SceneRoots:
   - {fileID: 410087041}
   - {fileID: 832575519}
   - {fileID: 1750181337}
+  - {fileID: 95336005}
   - {fileID: 688733361}
   - {fileID: 811698838}
-  - {fileID: 95336005}
   - {fileID: 2030034527}
   - {fileID: 1793473486}
   - {fileID: 1451173845}
