@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
     public float walkSpeed;
     // public float sprintSpeed;
     public float slideSpeed;
+    public float wallRunSpeed;
 
     private float desiredMoveSpeed;
     private float lastDesiredMoveSpeed;
@@ -19,6 +20,8 @@ public class PlayerMovement : MonoBehaviour
     public float slopeIncreaseMultiplier;
 
     public float groundDrag;
+
+    public float gravity;
 
     [Header("Jumping")]
     public float jumpForce;
@@ -64,10 +67,12 @@ public class PlayerMovement : MonoBehaviour
         // sprinting,
         crouching,
         sliding,
+        wallrunning,
         air
     }
 
     public bool sliding;
+    public bool wallrunning;
 
     private void Start()
     {
@@ -86,6 +91,11 @@ public class PlayerMovement : MonoBehaviour
         MyInput();
         SpeedControl();
         StateHandler();
+    }
+
+    private void FixedUpdate()
+    {
+        MovePlayer();
 
         if (isGrounded)
         {
@@ -94,12 +104,8 @@ public class PlayerMovement : MonoBehaviour
         else
         {
             rb.linearDamping = 0;
+            rb.AddForce(Vector3.down * gravity, ForceMode.Acceleration);
         }
-    }
-
-    private void FixedUpdate()
-    {
-        MovePlayer();
     }
 
     private void MyInput()
@@ -130,39 +136,45 @@ public class PlayerMovement : MonoBehaviour
 
     private void StateHandler()
     {
-        if (sliding)
+        if (wallrunning)
         {
-            state = MovementState.sliding;
+            state = MovementState.wallrunning;
+            desiredMoveSpeed = wallRunSpeed;
+        }
 
-            if (OnSlope() && rb.linearVelocity.y < 0.1f)
-                desiredMoveSpeed = slideSpeed;
+        if (sliding)
+            {
+                state = MovementState.sliding;
+
+                if (OnSlope() && rb.linearVelocity.y < 0.1f)
+                    desiredMoveSpeed = slideSpeed;
+
+                else
+                    desiredMoveSpeed = walkSpeed;
+            }
+
+            else if (Input.GetKey(crouchKey))
+            {
+                state = MovementState.crouching;
+                desiredMoveSpeed = crouchSpeed;
+            }
+
+            // else if(isGrounded && Input.GetKey(sprintKey))
+            // {
+            //     state = MovementState.sprinting;
+            //     desiredMoveSpeed = sprintSpeed;
+            // }
+
+            else if (isGrounded)
+            {
+                state = MovementState.walking;
+                desiredMoveSpeed = walkSpeed;
+            }
 
             else
-                desiredMoveSpeed = walkSpeed;
-        }
-
-        else if (Input.GetKey(crouchKey))
-        {
-            state = MovementState.crouching;
-            desiredMoveSpeed = crouchSpeed;
-        }
-
-        // else if(isGrounded && Input.GetKey(sprintKey))
-        // {
-        //     state = MovementState.sprinting;
-        //     desiredMoveSpeed = sprintSpeed;
-        // }
-
-        else if (isGrounded)
-        {
-            state = MovementState.walking;
-            desiredMoveSpeed = walkSpeed;
-        }
-
-        else
-        {
-            state = MovementState.air;
-        }
+            {
+                state = MovementState.air;
+            }
 
         if(Mathf.Abs(desiredMoveSpeed - lastDesiredMoveSpeed) > 4f && moveSpeed != 0)
         {
