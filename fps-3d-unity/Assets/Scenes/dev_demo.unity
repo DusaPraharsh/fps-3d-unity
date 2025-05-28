@@ -232,7 +232,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   orientation: {fileID: 1817559551}
-  playerObj: {fileID: 95336005}
+  playerObj: {fileID: 1633403050}
   maxSlideTime: 0.75
   slideForce: 300
   slideYScale: 0.5
@@ -249,24 +249,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eee6cdf10157b2d4b907fcf43f9a109f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wallLayer:
+  whatIsWall:
     serializedVersion: 2
     m_Bits: 512
-  groundLayer:
+  whatIsGround:
     serializedVersion: 2
     m_Bits: 256
   wallRunForce: 200
   wallJumpUpForce: 7
   wallJumpSideForce: 12
   wallClimbSpeed: 3
-  maxWallRunTime: 0.7
+  maxWallRunTime: 1.5
   upwardsRunKey: 304
   downwardsRunKey: 306
   jumpKey: 32
   wallCheckDistance: 0.7
   minJumpHeight: 2
   exitWallTime: 0.2
+  useGravity: 0
+  gravityCounterForce: 20
   orientation: {fileID: 1817559551}
+  cam: {fileID: 330585548}
 --- !u!1 &327654437
 GameObject:
   m_ObjectHideFlags: 0
@@ -527,6 +530,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mouseSensitivity: 400
   orientation: {fileID: 1817559551}
+  camHolder: {fileID: 1750181337}
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -858,7 +862,7 @@ Transform:
   m_GameObject: {fileID: 598716752}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 4.98, z: 35.05}
+  m_LocalPosition: {x: -3, y: 4.98, z: 57.05}
   m_LocalScale: {x: 0.5, y: 10, z: 20}
   m_ConstrainProportionsScale: 0
   m_Children: []
