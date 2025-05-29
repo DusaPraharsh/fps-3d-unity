@@ -193,7 +193,7 @@ MonoBehaviour:
   orientation: {fileID: 1817559551}
   state: 0
   sliding: 0
-  wallrunning: 0
+  wallrunning: 1
   dashing: 0
 --- !u!54 &95336008
 Rigidbody:
@@ -290,7 +290,7 @@ MonoBehaviour:
   dashForce: 200
   dashUpwardForce: 0
   dashDuration: 1
-  dashCd: 1
+  dashCd: 0.7
   dashKey: 304
 --- !u!1 &327654437
 GameObject:
