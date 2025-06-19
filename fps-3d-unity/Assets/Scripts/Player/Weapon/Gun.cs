@@ -45,7 +45,8 @@ public class Gun : MonoBehaviour
             {
                 if (Physics.Raycast(muzzle.position, muzzle.forward, out RaycastHit hitInfo, gunData.maxDistance))
                 {
-                    Debug.Log("shot");
+                    IDamageable damageable = hitInfo.transform.GetComponent<IDamageable>();
+                    damageable?.TakeDamage(gunData.damage);
                 }
 
                 gunData.currentAmmo--;
@@ -58,6 +59,8 @@ public class Gun : MonoBehaviour
     private void Update()
     {
         timeSinceLastShot += Time.deltaTime;
+
+        Debug.DrawRay(muzzle.position, muzzle.forward * gunData.maxDistance);
     }
 
     private void OnGunShot()
