@@ -1,5 +1,5 @@
 using UnityEngine;
-// using TMPro;
+using TMPro;
 
 public class GunSystem : MonoBehaviour
 {
@@ -18,10 +18,10 @@ public class GunSystem : MonoBehaviour
     public LayerMask enemy;
 
     [Header("Camera Shake")]
-    // public GameObject muzzleFlash, bulletHoleGraphic;
+    public GameObject muzzleFlash, bulletHoleGraphic;
     public CameraShake cameraShake;
     public float cameraShakeMagnitude, cameraShakeDuration;
-    // public TextMeshProUGUI text;
+    public TextMeshProUGUI text;
 
     private void Awake()
     {
@@ -33,7 +33,7 @@ public class GunSystem : MonoBehaviour
     {
         MyInput();
 
-        // text.SetText(bulletsLeft + "/" + magSize);
+        text.SetText(bulletsLeft + "/" + magSize);
     }
 
     private void MyInput()
@@ -68,8 +68,8 @@ public class GunSystem : MonoBehaviour
         }
 
         cameraShake.Shake(cameraShakeDuration, cameraShakeMagnitude);
-        // Instantiate(bulletHoleGraphic, raycastHit.point, Quaternion.Euler(0, 90, 0));
-        // Instantiate(muzzleFlash, attackPoint.position, Quaternion.identity);
+        Instantiate(bulletHoleGraphic, raycastHit.point, Quaternion.Euler(0, 180, 0));
+        Instantiate(muzzleFlash, attackPoint.position, Quaternion.identity);
 
         bulletsLeft--;
         bulletsShot--;
