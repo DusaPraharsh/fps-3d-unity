@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Target : MonoBehaviour, IDamageable
 {
-    private float health = 50f;
+    private float health = 100f;
 
     public void TakeDamage(float damage)
     {
